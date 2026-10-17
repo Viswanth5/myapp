@@ -1,0 +1,232 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id              String           @id @default(cuid())
+  email           String           @unique
+  name            String           @default("")
+  preferredName   String?          @map("preferred_name")
+  userType        String?          @map("user_type")
+  avatarUrl       String?
+  occupation      String?
+  semester        String           @default("")
+  branch          String           @default("")
+  college         String           @default("")
+  weeklyFreeHours Float            @default(28.0)
+  monthlyBudget   Float            @default(0.0)
+  startingBalance Float            @default(0.0)
+  currency        String           @default("INR")
+  quietHoursStart String           @default("23:00")
+  quietHoursEnd   String           @default("07:00")
+  isOnboarded     Boolean          @default(false)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  entries         Entry[]
+  habits          Habit[]
+  goals           Goal[]
+  courses         Course[]
+  recurringSpends RecurringSpend[]
+  notifications   Notification[]
+  rewinds         WeeklyRewind[]
+  bikeLogs        BikeLog[]
+
+  @@map("users")
+}
+
+model Course {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code      String   // e.g. "CS301"
+  name      String   // e.g. "Database Management Systems"
+  color     String   @default("#1F6F6B")
+  credits   Int      @default(4)
+  professor String?
+  entries   Entry[]
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("courses")
+}
+
+model Entry {
+  id            String    @id @default(cuid())
+  userId        String    @map("user_id")
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type          String    // TASK, EXAM, EXPENSE, INCOME, HABIT, GOAL, EVENT
+  title         String
+  description   String?
+  courseId      String?   @map("course_id")
+  course        Course?   @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  dueAt         DateTime? @map("due_at")
+  startAt       DateTime? @map("start_at")
+  effortMin     Int?      @map("effort_min") // Estimated effort in minutes
+  weight        Float?    // Academic / exam weight (0.0 to 1.0)
+  amount        Float?    // For EXPENSE or INCOME (in INR ₹)
+  category      String?   // Food, Academics, Travel, Mess, Tech, Personal
+  status        String    @default("PENDING") // PENDING, IN_PROGRESS, COMPLETED, SNOOZED, DROPPED, ROLLED_OVER
+  priorityScore Float     @default(0.0) @map("priority_score")
+  carriedCount  Int       @default(0) @map("carried_count") // Times carried over at midnight
+  snoozeCount   Int       @default(0) @map("snooze_count")
+  goalId        String?   @map("goal_id")
+  goal          Goal?     @relation(fields: [goalId], references: [id], onDelete: SetNull)
+  habitId       String?   @map("habit_id")
+  habit         Habit?    @relation(fields: [habitId], references: [id], onDelete: SetNull)
+  metadata      Json?     // Flexible metadata for syllabus chunking, study plans, etc.
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  @@index([userId, dueAt, status])
+  @@index([userId, type])
+  @@map("entries")
+}
+
+model Habit {
+  id               String     @id @default(cuid())
+  userId           String     @map("user_id")
+  user             User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name             String
+  description      String?
+  category         String     @default("Personal")
+  frequencyType    String     @default("DAILY") @map("frequency_type") // DAILY, SELECTED_DAYS, WEEKLY_TARGET
+  targetDaysOfWeek Json?      @map("target_days_of_week") // Array of integers [0..6]
+  frequencyDays    Int        @default(3) @map("frequency_days") // target days per week
+  dailyTarget      Int        @default(1) @map("daily_target")
+  reminderTime     String?    @map("reminder_time")
+  status           String     @default("ACTIVE") // ACTIVE, PAUSED, ARCHIVED
+  startDate        DateTime   @default(now()) @map("start_date")
+  streakCount      Int        @default(0) @map("streak_count")
+  bestStreak       Int        @default(0) @map("best_streak")
+  graceDaysLeft    Int        @default(2) @map("grace_days_left") // 2 grace days per month
+  monthlyGraceMax  Int        @default(2) @map("monthly_grace_max")
+  color            String     @default("#E0A458")
+  entries          Entry[]
+  logs             HabitLog[]
+  createdAt        DateTime   @default(now()) @map("created_at")
+  updatedAt        DateTime   @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@index([userId, status])
+  @@map("habits")
+}
+
+model HabitLog {
+  id        String   @id @default(cuid())
+  habitId   String   @map("habit_id")
+  habit     Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+  date      DateTime
+  completed Boolean  @default(true)
+  usedGrace Boolean  @default(false) @map("used_grace")
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@unique([habitId, date])
+  @@index([habitId, date])
+  @@map("habit_logs")
+}
+
+model Goal {
+  id           String    @id @default(cuid())
+  userId       String    @map("user_id")
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title        String
+  description  String?
+  targetValue  Float     @default(100.0) @map("target_value")
+  currentValue Float     @default(0.0) @map("current_value")
+  unit         String    @default("%")
+  category     String    @default("Personal") // Personal, Career, Education, Finance, Health & Fitness, Relationships, Custom
+  deadline     DateTime?
+  color        String    @default("#38BDF8")
+  priority     String    @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  status       String    @default("IN_PROGRESS") // NOT_STARTED, IN_PROGRESS, COMPLETED, PAUSED, CANCELLED
+  trackingType String    @default("MILESTONE") @map("tracking_type") // MILESTONE, TASK, NUMERIC
+  notes        String?
+  metadata     Json?     // Milestones list: [{ id, title, completed, completedAt, order, linkedTaskId }]
+  entries      Entry[]
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@index([userId, status])
+  @@map("goals")
+}
+
+model RecurringSpend {
+  id          String    @id @default(cuid())
+  userId      String    @map("user_id")
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String    // e.g. "Rent / Room", "Spotify", "Internet"
+  amount      Float     // e.g. 4200.0
+  dayOfMonth  Int       @default(1) @map("day_of_month") // 1-31
+  category    String    @default("Housing")
+  frequency   String    @default("MONTHLY") // MONTHLY, WEEKLY, YEARLY
+  status      String    @default("ACTIVE") // ACTIVE, PAUSED, CANCELLED
+  nextDueDate DateTime? @map("next_due_date")
+  notes       String?
+  isPaid      Boolean   @default(false) @map("is_paid")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@index([userId, status])
+  @@index([userId, dayOfMonth])
+  @@map("recurring_spends")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  body      String
+  actionUrl String?  @map("action_url")
+  read      Boolean  @default(false)
+  type      String   @default("BATCHED_PLAN")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("notifications")
+}
+
+model WeeklyRewind {
+  id               String   @id @default(cuid())
+  userId           String   @map("user_id")
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  weekStartDate    DateTime @map("week_start_date")
+  completedTasks   Int      @default(0) @map("completed_tasks")
+  carriedTasks     Int      @default(0) @map("carried_tasks")
+  totalSpent       Float    @default(0.0) @map("total_spent")
+  habitsScore      Float    @default(0.0) @map("habits_score")
+  focusSuggestions Json     @map("focus_suggestions") // JSON array of 3 strings
+  summaryText      String   @map("summary_text")
+  createdAt        DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("weekly_rewinds")
+}
+
+model BikeLog {
+  id                 String    @id @default(cuid())
+  userId             String    @map("user_id")
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  bikeName           String    @map("bike_name") // e.g. "Royal Enfield Hunter 350"
+  type               String    @default("FUEL") // FUEL, SERVICE, EXPENSE
+  litres             Float?
+  fuelPricePerLitre  Float?    @map("fuel_price_per_litre")
+  amount             Float     // Total ₹ paid
+  odometer           Float?
+  distance           Float?
+  serviceType        String?   @map("service_type")
+  date               DateTime  @default(now())
+  notes              String?
+  createdAt          DateTime  @default(now()) @map("created_at")
+
+  @@index([userId, date])
+  @@map("bike_logs")
+}
