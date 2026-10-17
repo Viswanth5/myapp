@@ -725,7 +725,7 @@ export default function OnboardingPage() {
                   Who is stepping up to this desk?
                 </h2>
                 <p className="text-sm sm:text-base text-slate-200 mt-1.5 leading-relaxed">
-                  Personalize your workspace for daily focus, projects, and routines.
+                  Personalize your VIRA workspace for daily focus, projects, and routines.
                 </p>
               </div>
 
@@ -916,7 +916,7 @@ export default function OnboardingPage() {
                   Which areas of life do you want to manage?
                 </h2>
                 <p className="text-sm sm:text-base text-slate-200 mt-1.5 leading-relaxed">
-                  Select the pillars you want clarity and control over.
+                  Select the life pillars you want VIRA to track and optimize.
                 </p>
               </div>
 
@@ -1076,7 +1076,7 @@ export default function OnboardingPage() {
                 {/* Daily Rhythm & Focus Vibe */}
                 <div className="space-y-2.5 pt-2">
                   <label className="text-sm font-semibold text-white">
-                    Daily Rhythm & Focus Vibe
+                    VIRA Focus Vibe & Rhythm
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                     {[
@@ -1134,7 +1134,7 @@ export default function OnboardingPage() {
                   Map your natural circadian rhythm
                 </h2>
                 <p className="text-sm sm:text-base text-slate-200 mt-1.5 leading-relaxed">
-                  Align your deep work, waking hours, and wind-down times without burnout.
+                  Align your deep work, waking hours, and wind-down times so VIRA schedules with precision.
                 </p>
               </div>
 
@@ -1330,7 +1330,7 @@ export default function OnboardingPage() {
                     Budget & Spending Runway
                   </h2>
                   <p className="text-sm sm:text-base text-slate-200 mt-1.5 leading-relaxed">
-                    Track spending velocity, safe daily burn, and savings. All optional.
+                    Track spending velocity, safe daily burn, and savings in VIRA. All optional.
                   </p>
                 </div>
                 <span className="text-xs font-mono font-bold text-amber-300 bg-amber-400/15 border border-amber-400/30 px-3 py-1 rounded-full shrink-0">
@@ -1544,7 +1544,7 @@ export default function OnboardingPage() {
                     Capture today's priorities
                   </h2>
                   <p className="text-sm sm:text-base text-slate-200 mt-1.5 leading-relaxed">
-                    Add top tasks or important pending work. You can add more anytime.
+                    Add top tasks so VIRA arranges your immediate focus. You can add more anytime.
                   </p>
                 </div>
                 <span className="text-xs font-mono font-bold text-amber-300 bg-amber-400/15 border border-amber-400/30 px-3 py-1 rounded-full shrink-0">
@@ -1762,7 +1762,7 @@ export default function OnboardingPage() {
                     Design your daily consistency
                   </h2>
                   <p className="text-sm sm:text-base text-slate-200 mt-1.5 leading-relaxed">
-                    Build actions you can maintain. Real streaks that start at day zero.
+                    Build daily rituals you can maintain with VIRA's zero-guilt consistency.
                   </p>
                 </div>
                 <span className="text-xs font-mono font-bold text-amber-300 bg-amber-400/15 border border-amber-400/30 px-3 py-1 rounded-full shrink-0">
@@ -2003,10 +2003,10 @@ export default function OnboardingPage() {
                   <span>Final Polish</span>
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-snug">
-                  Your personal Life-OS is ready
+                  Your VIRA Life-OS is calibrated & ready
                 </h2>
                 <p className="text-sm sm:text-base text-slate-200 mt-1.5 leading-relaxed">
-                  Choose what information you want to see first when you launch your workspace.
+                  Choose what view you want to see first when you launch your workspace.
                 </p>
               </div>
 

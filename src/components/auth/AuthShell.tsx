@@ -247,23 +247,23 @@ export const AuthShell: React.FC<AuthShellProps> = ({
             <div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-[10px] font-mono tracking-widest text-desk-amber uppercase mb-2.5">
                 <Sparkles className="h-2.5 w-2.5 text-desk-amber" />
-                <span>Intelligent Student Life-OS</span>
+                <span>VIRA · Intelligent Life-OS</span>
               </div>
 
               <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-white tracking-tight leading-tight">
                 {mode === "signin" && (
                   <>
-                    Welcome{" "}
+                    Sign In to{" "}
                     <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-desk-amber via-amber-200 to-amber-400">
-                      Back
+                      VIRA
                     </span>
                   </>
                 )}
                 {mode === "signup" && (
                   <>
-                    Begin Your{" "}
+                    Join{" "}
                     <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-desk-amber via-amber-200 to-amber-400">
-                      Journey
+                      VIRA Life-OS
                     </span>
                   </>
                 )}
@@ -271,19 +271,19 @@ export const AuthShell: React.FC<AuthShellProps> = ({
                   <>
                     Reset Your{" "}
                     <span className="italic font-normal text-transparent bg-clip-text bg-gradient-to-r from-desk-amber via-amber-200 to-amber-400">
-                      Password
+                      VIRA Password
                     </span>
                   </>
                 )}
               </h1>
 
-              <p className="font-sans text-xs text-slate-400/90 mt-2 leading-relaxed max-w-xs mx-auto">
+              <p className="font-sans text-xs text-slate-300 mt-2 leading-relaxed max-w-xs mx-auto">
                 {mode === "signin" &&
-                  "Enter your credentials to enter your coursework, habits & daily workspace."}
+                  "Enter your credentials to enter your VIRA focus desk, habits & workspace."}
                 {mode === "signup" &&
-                  "Create your account to organize coursework, deadlines & daily atomic habits."}
+                  "Create your VIRA account to organize coursework, deadlines & daily atomic habits."}
                 {mode === "forgot" &&
-                  "Enter your registered email and we'll dispatch password recovery instructions."}
+                  "Enter your registered email to receive VIRA password recovery instructions."}
               </p>
             </div>
           </div>
@@ -358,7 +358,7 @@ export const AuthShell: React.FC<AuthShellProps> = ({
                   </span>
                 ) : (
                   <>
-                    <span>Sign In</span>
+                    <span>Sign In to VIRA</span>
                     <ArrowRight className="h-4 w-4 stroke-[2.5]" />
                   </>
                 )}
@@ -529,7 +529,7 @@ export const AuthShell: React.FC<AuthShellProps> = ({
                   </span>
                 ) : (
                   <>
-                    <span>Create Account</span>
+                    <span>Create VIRA Account</span>
                     <ArrowRight className="h-4 w-4 stroke-[2.5]" />
                   </>
                 )}
@@ -645,7 +645,7 @@ export const AuthShell: React.FC<AuthShellProps> = ({
                       </span>
                     ) : (
                       <>
-                        <span>Send Recovery Link</span>
+                        <span>Send VIRA Recovery Link</span>
                         <ArrowRight className="h-4 w-4 stroke-[2.5]" />
                       </>
                     )}

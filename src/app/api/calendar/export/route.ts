@@ -14,7 +14,7 @@ export async function GET() {
         return {
           id: e.id,
           title: `[${e.type}] ${e.title}`,
-          description: `Course: ${e.course || "General"} | Estimated Effort: ${e.effortMin || 30}m | Created via Orbit`,
+          description: `Course: ${e.course || "General"} | Estimated Effort: ${e.effortMin || 30}m | Created via VIRA`,
           startAt: start,
           endAt: end,
           location: "Campus / Study Desk",
@@ -27,7 +27,7 @@ export async function GET() {
       status: 200,
       headers: {
         "Content-Type": "text/calendar; charset=utf-8",
-        "Content-Disposition": `attachment; filename="orbit-schedule-${new Date().toISOString().slice(0, 10)}.ics"`,
+        "Content-Disposition": `attachment; filename="vira-schedule-${new Date().toISOString().slice(0, 10)}.ics"`,
       },
     });
   } catch (error) {

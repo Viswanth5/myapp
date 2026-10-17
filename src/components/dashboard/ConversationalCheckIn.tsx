@@ -304,7 +304,7 @@ export const ConversationalCheckIn: React.FC = () => {
               </Badge>
             </div>
             <p className="text-xs text-slate-300 font-sans mt-0.5">
-              Natural planning that keeps you focused on what matters today.
+              Natural planning with VIRA that keeps you focused on what matters today.
             </p>
           </div>
         </div>

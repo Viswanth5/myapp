@@ -34,7 +34,7 @@ export function calculatePaceMultiplier(history: PaceSession[] = DEFAULT_HISTORY
   const avg = Math.round((ratios.reduce((a, b) => a + b, 0) / ratios.length) * 100) / 100;
 
   let insightText = `You usually take ${avg}x your initial estimate on assignments.`;
-  let recommendation = `Orbit has adjusted future timeboxes by +${Math.round((avg - 1) * 100)}% buffer to protect your schedule.`;
+  let recommendation = `VIRA has adjusted future timeboxes by +${Math.round((avg - 1) * 100)}% buffer to protect your schedule.`;
 
   if (avg <= 1.05 && avg >= 0.95) {
     insightText = "Spot on! Your time estimation accuracy is 96%.";

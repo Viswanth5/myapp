@@ -15,22 +15,22 @@ export function generateICS(events: CalendarEventExport[]): string {
   let ics = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//Orbit Life-OS//Student Desk//EN",
+    "PRODID:-//VIRA Life-OS//Personal Desk//EN",
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
-    "X-WR-CALNAME:Orbit Student Life-OS",
+    "X-WR-CALNAME:VIRA Personal Life-OS",
     "X-WR-TIMEZONE:Asia/Kolkata",
   ];
 
   for (const ev of events) {
     ics.push(
       "BEGIN:VEVENT",
-      `UID:${ev.id}@orbit.lifeos`,
+      `UID:${ev.id}@vira.lifeos`,
       `DTSTAMP:${formatICSDate(new Date())}`,
       `DTSTART:${formatICSDate(ev.startAt)}`,
       `DTEND:${formatICSDate(ev.endAt)}`,
       `SUMMARY:${ev.title}`,
-      `DESCRIPTION:${ev.description || "Scheduled via Orbit Life-OS"}`,
+      `DESCRIPTION:${ev.description || "Scheduled via VIRA Life-OS"}`,
       "STATUS:CONFIRMED",
       "END:VEVENT"
     );

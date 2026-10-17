@@ -66,8 +66,8 @@ export default function ResetPasswordPage() {
             <h1 className="font-serif text-2xl font-semibold text-white">
               Set New Password
             </h1>
-            <p className="text-xs text-slate-400">
-              Enter your new secure password below to restore access to your account.
+            <p className="text-xs text-slate-300">
+              Enter your new secure password below to restore access to your VIRA account.
             </p>
           </div>
 

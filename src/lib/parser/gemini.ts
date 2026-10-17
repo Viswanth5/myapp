@@ -3,7 +3,7 @@ import { ParsedEntry } from "./types";
 import { parseDeterministic } from "./deterministic";
 
 const SYSTEM_PROMPT = `
-You are the Orbit Life-OS Intelligent Capture Engine for Indian university students.
+You are the VIRA Life-OS Intelligent Capture Engine for students and professionals.
 Convert free-form, conversational, messy student inputs into a structured JSON array of items.
 
 Available Entry Types:

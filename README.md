@@ -1,12 +1,12 @@
-# Orbit — A Single Life-OS for Students
+# VIRA — Intelligent Personal Life-OS
 
-> **Minimal manual updating is the #1 design rule.** Type or speak one messy sentence and Orbit organizes your tasks, exams, expenses, habits, and goals into a unified, glassmorphic system.
+> **Minimal manual updating is the #1 design rule.** Type or speak one messy sentence and VIRA organizes your tasks, exams, expenses, habits, and goals into a unified, glassmorphic system.
 
 ---
 
 ## ⚡ Supabase Setup Guide (PostgreSQL, Auth & Realtime)
 
-Orbit is built to run on **Supabase PostgreSQL** with connection pooling, `@supabase/ssr` authentication, Row Level Security (RLS), and Realtime multi-device sync.
+VIRA is built to run on **Supabase PostgreSQL** with connection pooling, `@supabase/ssr` authentication, Row Level Security (RLS), and Realtime multi-device sync.
 
 ### Step 1: Create a Supabase Project
 1. Go to [supabase.com](https://supabase.com) and create a new project.
