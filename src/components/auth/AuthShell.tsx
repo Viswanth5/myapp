@@ -237,8 +237,8 @@ export const AuthShell: React.FC<AuthShellProps> = ({
           <div className="text-center space-y-3.5 mb-7">
             <div className="inline-flex relative group">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-b from-white/[0.16] via-white/[0.04] to-transparent border border-white/[0.2] shadow-[0_0_25px_rgba(224,164,88,0.2)] group-hover:scale-105 transition-transform duration-300">
-                <span className="font-serif text-2xl font-bold bg-gradient-to-tr from-white via-amber-100 to-desk-amber bg-clip-text text-transparent">
-                  V
+                <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-tr from-white via-amber-100 to-desk-amber bg-clip-text text-transparent">
+                  VR
                 </span>
               </div>
               <div className="absolute -inset-2 rounded-2xl bg-desk-amber/20 blur-md -z-10 group-hover:bg-desk-amber/30 transition-colors" />

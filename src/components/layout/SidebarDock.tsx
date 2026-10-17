@@ -50,10 +50,10 @@ export const SidebarDock: React.FC = () => {
         {/* Brand Orb Button */}
         <button
           onClick={() => handleTabClick("today")}
-          className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-desk-teal to-desk-amber/80 text-canvas-950 font-serif font-bold text-lg shadow-teal-subtle hover:scale-105 transition-transform cursor-pointer"
+          className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-tr from-desk-teal to-desk-amber/80 text-canvas-950 font-serif font-bold text-base tracking-tight shadow-teal-subtle hover:scale-105 transition-transform cursor-pointer"
           title="VIRA Home"
         >
-          V
+          VR
         </button>
 
         <div className="h-[1px] w-6 bg-white/[0.12] my-1" />

@@ -629,7 +629,7 @@ export default function OnboardingPage() {
       <header className="flex items-center justify-between px-1">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-b from-white/[0.18] to-white/[0.04] border border-white/[0.22] shadow-[0_0_24px_rgba(224,164,88,0.22)]">
-            <span className="font-sans font-bold text-lg text-white">V</span>
+            <span className="font-sans font-bold text-base tracking-tight text-white">VR</span>
           </div>
           <div>
             <div className="flex items-center gap-2">

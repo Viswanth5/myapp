@@ -131,10 +131,10 @@ export const Navbar: React.FC = () => {
               setActiveTab("today");
               if (pathname !== "/") router.push("/");
             }}
-            className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-desk-teal to-desk-amber/80 text-canvas-950 font-serif font-bold text-base shadow-teal-subtle hover:scale-105 transition-transform cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-desk-teal to-desk-amber/80 text-canvas-950 font-serif font-bold text-sm tracking-tight shadow-teal-subtle hover:scale-105 transition-transform cursor-pointer"
             title="VIRA Home"
           >
-            V
+            VR
           </button>
 
           <div className="flex items-center gap-2">
